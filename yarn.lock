@@ -6123,6 +6123,10 @@ wbuf@^1.1.0, wbuf@^1.7.2:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+web-storage@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/web-storage/-/web-storage-1.0.0.tgz#eeeb5670b63f9f20674d329df8a4c9778e520bc8"
+
 webpack-bundle-analyzer@^2.9.0:
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.11.1.tgz#b9fbfb6a32c0a8c1c3237223e90890796b950ab9"

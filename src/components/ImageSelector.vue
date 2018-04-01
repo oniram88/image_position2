@@ -94,10 +94,16 @@
   /* eslint-disable handle-callback-err */
 
   const _ = require('lodash')
+  const localStorage = require('web-storage')().localStorage;
 
   export default {
     name: 'image_selector',
     data: function () {
+
+      let image_path = localStorage.get('image_path');
+      let altezza_tela = localStorage.get('altezza_tela') || '';
+      let larghezza_tela = localStorage.get('larghezza_tela') || '';
+
       return {
         zoom_buttons: [
           {level: 1},
@@ -108,9 +114,9 @@
         ],
         selected_zoom: 1,
         test: 'xiao',
-        image_source: 'http://chirkup.me/images/uploaded/00/01/08/10855_original.jpg',
-        altezza_tela: '',
-        larghezza_tela: '',
+        image_source: image_path,
+        altezza_tela: altezza_tela,
+        larghezza_tela: larghezza_tela,
         x: 0,
         y: 0,
         image_width: 0,
@@ -159,15 +165,21 @@
       selected_zoom() {
         this.update_image_dim()
       },
-      image_source() {
+      image_source(new_val) {
+        this.update_image_dim()
+        localStorage.set('image_path', new_val);
+      },
+      altezza_tela(new_val) {
+        localStorage.set('altezza_tela', new_val);
         this.update_image_dim()
       },
-      altezza_tela() {
-        this.update_image_dim()
-      },
-      larghezza_tela() {
+      larghezza_tela(new_val) {
+        localStorage.set('larghezza_tela', new_val);
         this.update_image_dim()
       }
+    },
+    created() {
+      this.update_image_dim()
     },
     methods: {
       update_image_dim: _.debounce(function () {
