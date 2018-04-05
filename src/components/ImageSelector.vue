@@ -62,7 +62,7 @@
 
       <b-col cols="12">
         <div id="container_immagine">
-          <b-img v-on:mousemove="mouse_move" ref="image" :src="image_source"
+          <b-img v-on:click="mouse_move" ref="image" :src="image_source"
                  :class="class_zoom_level"></b-img>
         </div>
       </b-col>
