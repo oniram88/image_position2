@@ -99,7 +99,9 @@
       <b-col cols="12">
         <div id="container_immagine">
           <div id="center_image"
-               v-bind:style="{top:`${this.center_position_y}px`,left:`${this.center_position_x}px`}"></div>
+               v-bind:style="style_center_position"></div>
+          <div id="clicked_position"
+               v-bind:style="style_clicked_position"></div>
           <b-img v-on:click="mouse_move" ref="image" :src="image_source"
                  :style="style_zoom_level"></b-img>
         </div>
@@ -184,8 +186,20 @@
       center_position_y() {
         return this.offset_y * this.selected_zoom;
       },
+      style_clicked_position() {
+        return {
+          top: `${this.y}px`,
+          left: `${this.x}px`
+        }
+      },
+      style_center_position() {
+        return {
+          top: `${this.center_position_y}px`,
+          left: `${this.center_position_x}px`
+        }
+      },
       style_zoom_level() {
-        return {width:this.selected_zoom*100+"%"};//`zoom_level${this.selected_zoom.toString().replace('.', '_')}`
+        return {width: this.selected_zoom * 100 + "%"};//`zoom_level${this.selected_zoom.toString().replace('.', '_')}`
       },
       sx_t() {
         return {
@@ -259,25 +273,16 @@
     position: relative;
     img {
       width: 100%;
-      &.zoom_level1_5 {
-        width: 150%;
-      }
-      &.zoom_level2 {
-        width: 200%;
-      }
-      &.zoom_level2_5 {
-        width: 250%;
-      }
-      &.zoom_level3 {
-        width: 300%;
-      }
     }
-    #center_image {
+    #center_image,#clicked_position {
       position: absolute;
       width: 3px;
       height: 3px;
       border-radius: 3px;
       background-color: red;
+      &#clicked_position{
+        background-color: #00e516;
+      }
     }
   }
 </style>
